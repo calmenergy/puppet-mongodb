@@ -7,7 +7,7 @@ class mongodb::selinux_hack
     ensure => file,
     owner  => 'root',
     group  => 'root',
-    source => "puppet:///modules/${module_name}/tmp/mongodb_hack.te",
+    source => "puppet:///modules/${module_name}/mongodb_hack.te",
   }
 
   exec { 'mongod-checkmodule' :
