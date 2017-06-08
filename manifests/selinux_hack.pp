@@ -10,22 +10,22 @@ class mongodb::selinux_hack
     source => "puppet:///modules/${module_name}/tmp/mongodb_hack.te",
   }
 
-  exec { 'checkmodule' :
+  exec { 'mongod-checkmodule' :
     command     => '/usr/bin/checkmodule -M -m -o /tmp/mongodb_hack.mod /tmp/mongodb_hack.te',
     refreshonly => true,
     subscribe   => File['/tmp/mongodb_hack.te'],
   }
 
-  exec { 'package' :
+  exec { 'mongod-package' :
     command     => '/usr/bin/semodule_package -o /tmp/mongodb_hack.pp -m /tmp/mongodb_hack.mod',
     refreshonly => true,
-    subscribe   => Exec['checkmodule'],
+    subscribe   => Exec['mongod-checkmodule'],
   }
 
-  exec { 'semodule' :
+  exec { 'mongod-semodule' :
     command     => '/usr/sbin/semodule -i /tmp/mongodb_hack.pp',
     refreshonly => true,
-    subscribe   => Exec['package'],
+    subscribe   => Exec['mongod-package'],
   }
 
 }
