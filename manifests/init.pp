@@ -59,14 +59,16 @@ class mongodb (
   
 ) inherits ::mongodb::params {
 
-  # Main package and service
-  package { $package: ensure => 'installed' }
-  service { $service:
+# Main package and service
+package { $package: ensure => 'installed' }
+ -> class{'::mongodb::selinux_hack':}
+
+service { $service:
     ensure    => 'running',
     enable    => true,
     hasstatus => true,
     subscribe => File[$conffile],
-    require   => Package[$package],
+    require   => [ Package[$package], Class['::mongodb::selinux_hack']],
   }
 
   # Main configuration file
