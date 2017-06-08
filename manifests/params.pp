@@ -9,7 +9,7 @@
 #  include mongodb::params
 #
 class mongodb::params (
-  $mongod_version = $::mongod_version,
+  $mongod_version = '2.6', 
 ) {
   # service
   case $::operatingsystem {
@@ -28,7 +28,7 @@ class mongodb::params (
           $conffile = '/etc/mongod.conf'
           $template = "${module_name}/mongod-3.0.conf.erb"
         } else {
-          $conffile = '/etc/mongodb.conf'
+          $conffile = '/etc/mongod.conf'
           $template = "${module_name}/mongodb-2.6.conf.erb"
         }
         $pidfilepath = '/var/run/mongodb/mongod.pid'
