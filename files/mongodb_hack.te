@@ -1,5 +1,5 @@
 
-module mongod 1.0;
+module mongodb_hack 1.0;
 
 require {
 	type mongod_t;

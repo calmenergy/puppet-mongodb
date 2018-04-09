@@ -1,3 +1,7 @@
+#### 2018-03-01 - 1.0.8
+* Add selinux_hack
+	
+# changed /etc/mongod name for 2.6
 #### 2017-02-15 - 1.0.6
 * Allow more compression options & post backup parameter (@forgodssake, #5).
 
